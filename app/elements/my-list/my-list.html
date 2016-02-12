@@ -10,6 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-styles/typography.html">
+<link rel="import" href="../../bower_components/sortable-list/sortable-list.html">
 
 <dom-module id="my-list">
   <template>
@@ -21,12 +22,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       span {
         @apply(--paper-font-body1);
       }
+    sortable-list {
+      margin: 15px;
+    }
+    sortable-list > div {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      padding: 6px 12px;
+      margin-bottom: 3px;
+    }
     </style>
 
-    <ul>
+    <sortable-list id="basic-demo" animation="150">
       <template is="dom-repeat" items="{{items}}">
-        <li><span>{{item}}</span></li>
+      <div><span>{{item}}</span></div>
       </template>
+    </sortable-list>
+    <ul>
     </ul>
   </template>
 
