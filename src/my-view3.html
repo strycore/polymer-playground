@@ -9,7 +9,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../bower_components/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="shared-styles.html">
+
+<link rel="import" href="../bower_components/paper-styles/demo-pages.html">
 
 <dom-module id="my-view3">
   <template>
@@ -19,6 +27,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         padding: 10px;
       }
+      paper-button {
+        display: block;
+        background: #4285f4;
+        color: #fff;
+      }
+      paper-menu {
+        display: block;
+      }
+      paper-menu-button {
+        margin: auto;
+      }
     </style>
 
     <div class="card">
@@ -26,6 +45,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <h1>View Three</h1>
       <p>Modus commodo minimum eum te, vero utinam assueverit per eu.</p>
       <p>Ea duis bonorum nec, falli paulo aliquid ei eum.Has at minim mucius aliquam, est id tempor laoreet.Pro saepe pertinax ei, ad pri animal labores suscipiantur.</p>
+      <div>
+        <h4>Paper Icon Button + Paper Menu</h4>
+        <div class="horizontal-section">
+          <paper-menu-button>
+            <paper-icon-button icon="menu" class="dropdown-trigger" alt="menu"></paper-icon-button>
+            <paper-menu class="dropdown-content">
+              <paper-item>Item 1</paper-item>
+              <paper-item>Item 2</paper-item>
+              <paper-item>Item 3</paper-item>
+            </paper-menu>
+          </paper-menu-button>
+        </div>
+      </div>
     </div>
   </template>
 
