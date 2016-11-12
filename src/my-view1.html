@@ -71,7 +71,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       onInputChange: function(event) {
-          var input = this.$['auto-field'];
+          const input = this.$['auto-field'];
           const search = event.detail.option.text;
           const url = 'https://api.github.com/search/users?q=' + search + '+in:login';
           const req = new XMLHttpRequest();
@@ -79,7 +79,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           req.onload = function () {
             if (req.status === 200) {
               const data = JSON.parse(req.response);
-              console.log(data);
               input.suggestions(data.items);
             }
           };
