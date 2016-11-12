@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-autocomplete/paper-autocomplete.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-view1">
@@ -26,12 +27,64 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <h1>View One</h1>
       <p>Ut labores minimum atomorum pro. Laudem tibique ut has.
       <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+
+      <paper-autocomplete
+        id="auto-field"
+        text-property="login"
+        value-property="id"
+        min-length="2"
+        remote-source>
+      </paper-autocomplete>
     </div>
   </template>
 
   <script>
     Polymer({
-      is: 'my-view1'
+      is: 'my-view1',
+
+      properties: {
+        dataSource: {
+          type: Array,
+          value: [
+            {"text": "Alabama", "value": "AL"},
+            {"text": "Alaska", "value": "AK"},
+            {"text": "American Samoa", "value": "AS"},
+            {"text": "Arizona", "value": "AZ"},
+            {"text": "Arkansas", "value": "AR"},
+            {"text": "California", "value": "CA"},
+            {"text": "Colorado", "value": "CO"},
+            {"text": "Connecticut", "value": "CT"},
+            {"text": "Delaware", "value": "DE"},
+            {"text": "District Of Columbia", "value": "DC"},
+            {"text": "Federated States Of Micronesia", "value": "FM"},
+            {"text": "Florida", "value": "FL"},
+            {"text": "Georgia", "value": "GA"},
+            {"text": "Guam", "value": "GU"},
+            {"text": "Hawaii", "value": "HI"},
+            {"text": "Idaho", "value": "ID"},
+            {"text": "Illinois", "value": "IL"}
+          ]
+        }
+      },
+      listeners: {
+        'autocomplete-change': 'onInputChange'
+      },
+
+      onInputChange: function(event) {
+          var input = this.$['auto-field'];
+          const search = event.detail.option.text;
+          const url = 'https://api.github.com/search/users?q=' + search + '+in:login';
+          const req = new XMLHttpRequest();
+          req.open('GET', encodeURI(url));
+          req.onload = function () {
+            if (req.status === 200) {
+              const data = JSON.parse(req.response);
+              console.log(data);
+              input.suggestions(data.items);
+            }
+          };
+          req.send();
+      }
     });
   </script>
 </dom-module>
