@@ -42,30 +42,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer({
       is: 'my-view1',
 
-      properties: {
-        dataSource: {
-          type: Array,
-          value: [
-            {"text": "Alabama", "value": "AL"},
-            {"text": "Alaska", "value": "AK"},
-            {"text": "American Samoa", "value": "AS"},
-            {"text": "Arizona", "value": "AZ"},
-            {"text": "Arkansas", "value": "AR"},
-            {"text": "California", "value": "CA"},
-            {"text": "Colorado", "value": "CO"},
-            {"text": "Connecticut", "value": "CT"},
-            {"text": "Delaware", "value": "DE"},
-            {"text": "District Of Columbia", "value": "DC"},
-            {"text": "Federated States Of Micronesia", "value": "FM"},
-            {"text": "Florida", "value": "FL"},
-            {"text": "Georgia", "value": "GA"},
-            {"text": "Guam", "value": "GU"},
-            {"text": "Hawaii", "value": "HI"},
-            {"text": "Idaho", "value": "ID"},
-            {"text": "Illinois", "value": "IL"}
-          ]
-        }
-      },
       listeners: {
         'autocomplete-change': 'onInputChange'
       },
