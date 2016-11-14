@@ -9,6 +9,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/platinum-push-messaging/platinum-push-messaging.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-view2">
@@ -22,16 +24,47 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class="card">
+      <platinum-push-messaging
+        id="push-message"
+        title="Application updated"
+        message="The application was updated in the background"
+        icon-url="icon.png"
+        click-url="notification.html">
+      </platinum-push-messaging>
+      <paper-button id="test-push" on-tap="onTestPush">
+      test
+      </paper-button>
       <div class="circle">2</div>
       <h1>View Two</h1>
       <p>Ea duis bonorum nec, falli paulo aliquid ei eum.</p>
-      <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.Detracto suavitate repudiandae no eum. Id adhuc minim soluta nam.Id nam odio natum malorum, tibique copiosae expetenda mel ea.</p>
+      <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.Detracto
+      suavitate repudiandae no eum. Id adhuc minim soluta nam.Id nam odio natum
+      malorum, tibique copiosae expetenda mel ea.
+      </p>
     </div>
   </template>
 
   <script>
     Polymer({
-      is: 'my-view2'
+      is: 'my-view2',
+
+      listeners: {
+        'push-message.subscription-changed': 'onSubscriptionChanged'
+      },
+
+      ready: function() {
+        const ppm = this.$['push-message'];
+        ppm.enable();
+      },
+
+      onSubscriptionChanged: function(event) {
+        console.log("sub changed");
+      },
+
+      onTestPush: function() {
+        const ppm = this.$['push-message'];
+        ppm.testPush("plop")
+      }
     });
   </script>
 </dom-module>
